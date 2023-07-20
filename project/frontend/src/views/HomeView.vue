@@ -6,10 +6,14 @@
 </script>
 
 <template>
-    <div>
+    <div class="home-main">
         <h1 class="text-center mt-5 pt-5">Home page</h1>
     </div>
 </template>
 
 
-<style scoped></style>
+<style scoped>
+.home-main{
+    height: 400px;
+}
+</style>

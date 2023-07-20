@@ -9,7 +9,7 @@ const api = useApiStore()
 
 <template>
     <div class="d-flex justify-content-between align-items-center">
-        <button type="button" class="btn btn-light">
+        <button type="button" class="btn btn-light" @click="router.push({ name: 'home' })">
             <h3>Event people</h3>
         </button>
 
