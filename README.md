@@ -11,3 +11,9 @@
 - Перейдите в папку deploy
 - Запустите проект командами docker-compose up --build
 - Проект доступен по адресу http://localhost:8001/
+
+### Разработка: docker-compose.dev.yml 
+
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
