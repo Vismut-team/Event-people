@@ -13,8 +13,19 @@ function _setUserdataToLocalStorege(username, user_token) {
 }
 function _getUserdataFromLocalStorege() {
   const userData = JSON.parse(localStorage.getItem("userData"));
-  console.log(userData);
   return userData;
+}
+function checkUserData(username, user_token) {
+  // TODO: refactor this function
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (username && user_token) {
+        resolve({ statusCode: 200, message: "Correct data" });
+      } else {
+        reject({ statusCode: 404, message: "Invalid username or token" });
+      }
+    });
+  });
 }
 
 export const useApiStore = defineStore("apiStore", {
@@ -34,23 +45,34 @@ export const useApiStore = defineStore("apiStore", {
 
   actions: {
     startSession() {
+      console.log("start session");
       this.userData = _getUserdataFromLocalStorege();
+      if (this.userData.username && this.userData.user_token) {
+        checkUserData(this.userData.username, this.userData.user_token)
+          .then((data) => {
+            console.log(data);
+            this.auth = true;
+          })
+          .catch((error) => {
+            console.error(error);
+            this.auth = false;
+          });
+      }
     },
-    login(username, password, remember_me=true) {
+    login(username, password, remember_me = true) {
       // TODO: refactor this function
       // _setUserdataToLocalStorege(username, user_token);
       console.log("login");
       setTimeout(() => {
-        console.log("success");
-        console.log(username, password);
-        this.auth = true
-        if (remember_me){
-          _setUserdataToLocalStorege(username, password)
-          _getUserdataFromLocalStorege()
-        } else{
-          this.userData = {username: username}
+        console.log("success login");
+        this.auth = true;
+        if (remember_me) {
+          _setUserdataToLocalStorege(username, password);
+          _getUserdataFromLocalStorege();
+        } else {
+          this.userData = { username: username };
         }
-        this.auth = true
+        this.auth = true;
       }, 1000);
     },
   },
