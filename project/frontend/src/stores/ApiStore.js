@@ -46,7 +46,10 @@ export const useApiStore = defineStore("apiStore", {
   actions: {
     startSession() {
       console.log("start session");
-      this.userData = _getUserdataFromLocalStorege();
+      const userData = _getUserdataFromLocalStorege();
+      if (userData) {
+        this.userData = userData;
+      }
       if (this.userData.username && this.userData.user_token) {
         checkUserData(this.userData.username, this.userData.user_token)
           .then((data) => {
@@ -75,5 +78,6 @@ export const useApiStore = defineStore("apiStore", {
         this.auth = true;
       }, 1000);
     },
+    registration(username, password) {},
   },
 });
