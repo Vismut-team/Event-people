@@ -13,7 +13,7 @@ const api = useApiStore()
 
 const form_data = reactive({
     username: null,
-    email: null,
+    phone_number: null,
     password: null,
     password2: null,
     errors: [],
@@ -38,7 +38,8 @@ function registration() {
                     <input v-model="form_data.username" type="text" class="form-control" placeholder="Имя пользователя">
                 </div>
                 <div class="mb-3">
-                    <input v-model="form_data.email" type="email" class="form-control" placeholder="Почта">
+                    <input v-model="form_data.phone_number" type="tel" class="form-control" id="phone" name="phone"
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Номер телефона">
                 </div>
                 <div class="mb-3">
                     <input v-model="form_data.password" type="password" class="form-control" placeholder="Пароль">
