@@ -1,8 +1,14 @@
 <script setup>
+import { onMounted } from "vue"
+
 import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
-
+import { useApiStore } from '@/stores/ApiStore'
+const api = useApiStore()
+onMounted(() => {
+  api.startSession()
+})
 </script>
 
 <template>
