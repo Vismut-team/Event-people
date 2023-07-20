@@ -25,17 +25,14 @@ function registration() {
 </script>
 <template>
     <div class="rounded-container m-5">
-        <div class="text-center">
-            <h3>После регистрации вы получите доступ ко всем возможностям сайта</h3>
-            <h5 class="align-items-center">Если у вас уже есть аккаунт вы можете <button class="btn btn-outline-info"
-                    @click="change_window">войти</button></h5>
-
-        </div>
-
+        <h5 class="text-center">После регистрации вы получите доступ ко всем возможностям сайта</h5>
 
         <div class="d-flex align-items-center flex-column justify-content-center">
-            <h5 class="text-danger" v-for="error in form_data.errors">{{ error }}</h5>
-
+            <div class="text-center text-danger">
+                <hr>
+                <h5 v-for="error in form_data.errors">{{ error }}</h5>
+                <hr>
+            </div>
             <form @submit.prevent="registration">
                 <div class="mb-3">
                     <input v-model="form_data.username" type="text" class="form-control" placeholder="Имя пользователя">
@@ -50,9 +47,11 @@ function registration() {
                     <input v-model="form_data.password2" type="password" class="form-control" placeholder="Пароль">
                 </div>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-outline-success" type="submit">Регистрация</button>
+                    <button class="btn btn-success" type="submit">Регистрация</button>
                 </div>
             </form>
+            <h5 class="align-items-center text-center mt-4">Если у вас уже есть аккаунт вы можете <button
+                    class="btn btn-outline-info" @click="change_window">войти</button></h5>
         </div>
 
     </div>

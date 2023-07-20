@@ -9,11 +9,9 @@ const change_window = () => {
 }
 </script>
 <template>
-    <div>
-        <LoginWindow v-if="login_active" 
-        :change_window="change_window" />
-        <RegistrationWindow v-else 
-        :change_window="change_window" />
+    <div class="mt-3 mb-5 d-flex justify-content-center">
+        <LoginWindow v-if="login_active" :change_window="change_window" />
+        <RegistrationWindow v-else :change_window="change_window" />
 
     </div>
 </template>

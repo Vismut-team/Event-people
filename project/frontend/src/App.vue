@@ -27,8 +27,6 @@ nav {
 }
 
 main {
-  /* height: 80%; */
-  height: 400px;
   width: 100%;
 }
 
