@@ -20,7 +20,21 @@ const form_data = reactive({
 })
 
 function registration() {
-    console.log("registration")
+    form_data.errors = []
+    if (!form_data.username || !form_data.phone_number || !form_data.password ) {
+        form_data.errors.push("Заполните все поля формы")
+        return false
+    }
+
+    if (form_data.password !== form_data.password2) {
+        form_data.errors.push("Пароли должны совпадать")
+        return false
+    }
+    if(form_data.password.length <= 7){
+        form_data.errors.push("Пароль должен быть длиннее 7 символов")
+        return false
+    }
+    api.registration(form_data.username, form_data.phone_number, form_data.password)
 }
 </script>
 <template>
@@ -39,7 +53,7 @@ function registration() {
                 </div>
                 <div class="mb-3">
                     <input v-model="form_data.phone_number" type="tel" class="form-control" id="phone" name="phone"
-                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="Номер телефона">
+                        pattern="[0-9]{11}" placeholder="Номер телефона">
                 </div>
                 <div class="mb-3">
                     <input v-model="form_data.password" type="password" class="form-control" placeholder="Пароль">

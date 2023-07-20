@@ -78,6 +78,11 @@ export const useApiStore = defineStore("apiStore", {
         this.auth = true;
       }, 1000);
     },
-    registration(username, password) {},
+    registration(username, phone_number, password) {
+      // TODO: refactor this function
+
+      console.log("register");
+      console.log(username, phone_number, password);
+    },
   },
 });
