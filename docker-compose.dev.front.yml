@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: postgres_container
+    image: postgres:13.0-alpine
+    env_file:
+      - project/backend/.env-non-dev
+    networks:
+      - project-network
+    ports:
+      - "2344:5432"
+
+  # pgadmin:
+  #   container_name: pgadmin_container
+  #   restart: always
+  #   image: dpage/pgadmin4
+  #   depends_on:
+  #     - db
+  #   env_file:
+  #     - project/backend/.env-non-dev
+  #   # networks:
+  #   #   - project-network
+  #   ports:
+  #     - "5050:80"
+  #   platform: linux/amd64
+
+  backend:
+    container_name: backend
+    build:
+      context: project/backend
+    env_file:
+      - project/backend/.env-non-dev
+    restart: always
+    command: ["deploy/app.sh"]
+    depends_on:
+      - db
+    networks:
+      - project-network
+    # ports:
+    #   - "8000:8000"
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./project/frontend
+    volumes:
+      - ./project/frontend:/app/:ro
+      - /app/node_modules
+    # ports:
+    #   - "8080:8080"
+    depends_on:
+      - backend
+    networks:
+      - project-network
+    environment:
+      - NODE_ENV=development
+  
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: dev-front/Dockerfile
+    # restart: always
+
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend
+    
+    # volumes:
+    #   - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    #   - ./project/backend/logs:/srv/app/logs
+
+    networks:
+      - project-network
+
+networks:
+  project-network:
+    driver: bridge

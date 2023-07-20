@@ -12,8 +12,14 @@
 - Запустите проект командами docker-compose up --build
 - Проект доступен по адресу http://localhost:8001/
 
-### Разработка: docker-compose.dev.yml 
+### Разработка backend: docker-compose.dev.yml 
 
 ```bash
 docker compose -f docker-compose.dev.yml up --build
+```
+
+### Разработка frontend: docker-compose.dev.front.yml 
+
+```bash
+docker compose -f docker-compose.dev.front.yml  up --build
 ```

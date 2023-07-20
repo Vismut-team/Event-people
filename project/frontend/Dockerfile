@@ -5,11 +5,11 @@ FROM node:16.13.0-alpine3.11
 WORKDIR /app/
 
 COPY package.json ./
+COPY . .
 
 RUN npm cache verify
 RUN npm install
 
-COPY . .
 
 EXPOSE 8080
 
