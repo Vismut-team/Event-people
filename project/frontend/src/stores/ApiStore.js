@@ -11,6 +11,9 @@ function _setUserdataToLocalStorege(username, user_token) {
   };
   localStorage.setItem("userData", JSON.stringify(userData));
 }
+function _removeUserdataFromLocalStorege() {
+  localStorage.removeItem("userData");
+}
 function _getUserdataFromLocalStorege() {
   const userData = JSON.parse(localStorage.getItem("userData"));
   return userData;
@@ -83,6 +86,11 @@ export const useApiStore = defineStore("apiStore", {
 
       console.log("register");
       console.log(username, phone_number, password);
+    },
+    logout() {
+      _removeUserdataFromLocalStorege();
+      this.userData = {};
+      this.auth = false;
     },
   },
 });
