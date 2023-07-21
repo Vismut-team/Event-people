@@ -27,12 +27,14 @@ onMounted(() => {
 
 <style scoped>
 nav {
+  position: fixed;
   width: 100%;
-  margin: 0;
-  padding: 0;
+  top: 0;
+  z-index: 1;
 }
 
 main {
+  margin-top: 100px;
   width: 100%;
 }
 
