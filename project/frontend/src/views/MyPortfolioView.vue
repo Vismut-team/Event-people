@@ -8,12 +8,12 @@ const api = useApiStore()
 </script>
 <template>
     <div class="portfolio-main">
-        <h1 class="text-center">Страница пользователя {{ $route.params.id }}</h1>
+        <h1 class="text-center">Мой профиль</h1>
     </div>
 </template>
 
 <style scoped>
-.portfolio-main {
+.portfolio-main{
     height: 400px;
 }
 </style>

@@ -17,7 +17,7 @@ const api = useApiStore()
         <div class="d-flex justify-content-around align-items-center">
             <!-- <button v-if="api.userAuth" type="button" class="btn btn-light">Создать анкету</button> -->
             <button v-if="api.userAuth" type="button" class="btn btn-light"
-                @click="router.push({ name: 'portfolio' })">Аккаунт</button>
+                @click="router.push({ name: 'my-portfolio' })">Аккаунт</button>
             <button v-if="!api.userAuth" type="button" class="btn btn-light"
                 @click="router.push({ name: 'authorization' })">Войти</button>
             <button type="button" class="btn btn-light" @click="router.push({ name: 'about' })">О нас</button>

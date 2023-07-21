@@ -4,6 +4,7 @@ import AuthView from "../views/AuthView.vue";
 import AboutView from "../views/AboutView.vue";
 import ContactsView from "../views/ContactsView.vue";
 import PortfolioView from "../views/PortfolioView.vue";
+import MyPortfolioView from "../views/MyPortfolioView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,11 +30,17 @@ const router = createRouter({
       path: "/contacts",
       name: "contacts",
       component: ContactsView,
+      // TODO: add children (work examples ???)
     },
     {
-      path: "/portfolio",
+      path: "/portfolio/:id",
       name: "portfolio",
       component: PortfolioView,
+    },
+    {
+      path: "/my-portfolio",
+      name: "my-portfolio",
+      component: MyPortfolioView,
     },
   ],
 });
