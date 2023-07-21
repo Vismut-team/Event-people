@@ -18,20 +18,25 @@ const form_data = reactive({
 })
 
 function login() {
-    console.log("login")
+    form_data.errors = []
+    if (!form_data.username || !form_data.password) {
+        form_data.errors.push("Заполните все поля формы")
+        return false
+    }
+    api.login(form_data.username, form_data.password, form_data.remember_me)
 
 }
 </script>
 <template>
-    <div class="rounded-container m-5">
-        <div class="mb-4 text-center">
-            <h2>Вы не зарегистрированы</h2>
-            <p>Чтобы воспользоваться мессенджером вам нужно войти</p>
-        </div>
-
+    <div class="rounded-container p-5">
+        <h5 class="text-center">Вход на сайт Event people</h5>
 
         <div class="d-flex align-items-center flex-column justify-content-center">
-            <h5 v-for="error in form_data.errors">{{ error }}</h5>
+            <div class="text-center text-danger">
+                <hr>
+                <h5 v-for="error in form_data.errors">{{ error }}</h5>
+                <hr>
+            </div>
 
             <form @submit.prevent="login">
                 <div class="mb-3">
@@ -46,18 +51,12 @@ function login() {
                     <span>Запомнить меня</span>
                 </div>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-outline-success" type="submit">Войти</button>
+                    <button class="btn btn-success" type="submit">Войти</button>
                 </div>
             </form>
         </div>
-
-        <div class="mt-3">
-            <p class="mt-2 text-center">После регистрации вы получите доступ ко всем возможностям сайта</p>
-
-            <div class="d-grid gap-2">
-                <button class="btn btn-outline-info" type="button" @click="change_window">Зарегистрироваться</button>
-            </div>
-        </div>
+        <h5 class="align-items-center text-center mt-4">Если у вас еще нет аккаунта, вы можете <button
+                class="btn btn-outline-info" @click="change_window">зарегистрироваться</button></h5>
     </div>
 </template>
 
