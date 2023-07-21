@@ -1,8 +1,29 @@
 <script setup>
 import { useApiStore } from '@/stores/ApiStore'
+import { reactive, computed } from "vue"
+
 const api = useApiStore()
 
+const userDataFromApi = api.getUserFullData()
 
+const userData = reactive(
+    {
+        firstName: userDataFromApi.firstName,
+        lastName: userDataFromApi.lastName,
+        phoneNumber: userDataFromApi.phoneNumber,
+        email: userDataFromApi.email,
+        city: userDataFromApi.city,
+    }
+)
+const cityList = api.getCityList()
+
+function changeUserData() {
+    console.log("changed")
+    if (userData.firstName && userData.lastName && userData.phoneNumber && userData.city) {
+        // TODO refactor this function (api)
+        api.updateUserData()
+    }
+}
 </script>
 <template>
     <div class="portfolio-main row pb-5">
@@ -43,27 +64,40 @@ const api = useApiStore()
                 <hr>
                 <h4 class="text-center">Личные данные</h4>
                 <hr>
-                <div class="ps-4 pe-4">
+                <form @submit.prevent="changeUserData" class="ps-4 pe-4">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Имя</span>
-                        <input type="text" class="form-control" placeholder="Имя" aria-label="Username">
+                        <input v-model="userData.firstName" type="text" class="form-control" placeholder="Имя"
+                            aria-label="Username">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Фамилия</span>
-                        <input type="text" class="form-control" placeholder="Фамилия" aria-label="Username">
+                        <input v-model="userData.lastName" type="text" class="form-control" placeholder="Фамилия"
+                            aria-label="Username">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Номер телефона</span>
-                        <input type="tel" class="form-control" placeholder="+7-***-***-**-**" aria-label="Username">
+                        <input v-model="userData.phoneNumber" type="tel" class="form-control" placeholder="+7-***-***-**-**"
+                            aria-label="Username">
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">Электронная почта</span>
-                        <input type="email" class="form-control" placeholder="example@mail.com" aria-label="Username">
+                        <input v-model="userData.email" type="email" class="form-control" placeholder="example@mail.com"
+                            aria-label="Username">
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">Город</span>
-                        <input type="text" class="form-control">
+                        <!-- <input v-model="userData.city" type="text" class="form-control"> -->
+                        <select class="form-select" aria-label="Default select example">
+                            <option v-for="city in cityList" :value="city.id" :key="city.id"
+                                :selected="city.id === userData.city.id">{{ city.title }}</option>
+
+                            <!-- <option selected>{{ userData.city.title }}</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option> -->
+                        </select>
                     </div>
 
                     <div class="form-check form-switch">
@@ -78,7 +112,10 @@ const api = useApiStore()
                         <input class="form-check-input" type="checkbox" checked>
                         <label class="form-check-label">Какой-то вариант 3</label>
                     </div>
-                </div>
+                    <div class="d-grid gap-2 mt-2">
+                        <button type="submit" class="btn btn-outline-success">Обновить</button>
+                    </div>
+                </form>
             </div>
             <div id="list-item-3" class="mb-5">
                 <hr>
