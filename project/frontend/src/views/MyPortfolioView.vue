@@ -5,7 +5,7 @@ const api = useApiStore()
 
 </script>
 <template>
-    <div class="portfolio-main row">
+    <div class="portfolio-main row pb-5">
         <div class=" col-3">
             <div id="list-example" class="portfolio-main__toolbar list-group">
                 <a class="list-group-item list-group-item-action" href="#list-item-1">Профиль</a>
@@ -27,7 +27,7 @@ const api = useApiStore()
                     <div class="row">
                         <div class="col-2">
                             <button class="btn btn-outline-light ">
-                                <img src="user_standart_avatar.png" class="portfolio-main__avatar-preview" alt="avatar"
+                                <img src="/user_standart_avatar.png" class="portfolio-main__avatar-preview" alt="avatar"
                                     @mouseover="style">
                             </button>
                         </div>
@@ -103,11 +103,11 @@ const api = useApiStore()
                 <hr>
                 <div>
                     <div class="input-group mb-3">
-                        <img src="icon-vk.png" width="50px" alt="">
+                        <img src="/icon-vk.png" width="50px" alt="">
                         <input type="text" class="form-control" placeholder="Профиль ВКонтакте" aria-label="Username">
                     </div>
                     <div class="input-group mb-3">
-                        <img src="icon-telegram.png" width="50px" alt="">
+                        <img src="/icon-telegram.png" width="50px" alt="">
                         <input type="text" class="form-control" placeholder="Профиль В Телеграм" aria-label="Username">
                     </div>
                 </div>
