@@ -18,8 +18,8 @@
 docker compose -f docker-compose.dev.yml up --build
 ```
 
-### Разработка frontend: docker-compose.dev.front.yml 
+### Разработка frontend без подгрузки node_modules: docker-compose.dev.front.yml 
 
 ```bash
-docker compose -f docker-compose.dev.front.yml  up --build
+docker compose -f docker-compose.dev.front.yml up --build
 ```
