@@ -9,7 +9,6 @@ import router from '../router'
 
 <template>
     <div class="home-main">
-        <h1 class="text-center mt-5 pt-5">Home page</h1>
         <div class="text-center">
             <h3>Самые популярные авторы</h3>
             <div class="list-group">
@@ -25,7 +24,6 @@ import router from '../router'
         </div>
     </div>
 </template>
-
 
 <style scoped>
 .home-main {

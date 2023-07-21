@@ -3,9 +3,7 @@ import { useApiStore } from '@/stores/ApiStore'
 import { reactive, computed } from "vue"
 
 const api = useApiStore()
-
 const userDataFromApi = api.getUserFullData()
-
 const userData = reactive(
     {
         firstName: userDataFromApi.firstName,
@@ -16,7 +14,6 @@ const userData = reactive(
     }
 )
 const cityList = api.getCityList()
-
 function changeUserData() {
     console.log("changed")
     if (userData.firstName && userData.lastName && userData.phoneNumber && userData.city) {
@@ -39,9 +36,7 @@ function changeUserData() {
         </div>
         <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="col-9 scrollspy-example"
             tabindex="0">
-
             <div id="list-item-1" class="mb-5">
-                <hr>
                 <h4 class="text-center">Так участники сообщества видят ваш профиль</h4>
                 <hr>
                 <div>
@@ -156,9 +151,6 @@ function changeUserData() {
                     <p class="text-center">У вас нет уведомлений</p>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </template>

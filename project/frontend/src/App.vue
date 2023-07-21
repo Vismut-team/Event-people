@@ -13,20 +13,18 @@ onMounted(() => {
 
 <template>
   <div>
-    <nav>
+    <div class="nav-main">
       <Navbar />
-    </nav>
-    <main scrolling="auto">
+    </div>
+    <main>
       <RouterView />
     </main>
-    <footer>
-      <Footer />
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <style scoped>
-nav {
+.nav-main {
   position: fixed;
   width: 100%;
   top: 0;
@@ -34,12 +32,7 @@ nav {
 }
 
 main {
-  margin-top: 100px;
-  width: 100%;
-}
-
-footer {
-  height: 15%;
+  margin-top: 60px;
   width: 100%;
 }
 </style>
