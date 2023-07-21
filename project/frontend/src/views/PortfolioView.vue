@@ -76,7 +76,7 @@ onMounted(() => {
                     <h4 class="text-center">Специализация и услуги</h4>
                     <div class="p-3 d-flex flex-wrap justify-content-between">
                         <button v-for="service in services_from_backend" :key="service.id"
-                            @click="changeServiceWindow(service)" class="btn btn-outline-info">lorem</button>
+                            @click="changeServiceWindow(service)" class="btn btn-outline-info">{{ service.title }}</button>
                     </div>
                     <div class=" mt-3">
                         <!-- <h3 class="text-center">#TODO: Должны меняться от кнопки</h3> -->
