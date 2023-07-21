@@ -6,4 +6,4 @@ app = FastAPI(
     title='Epeople - агрегатор творческих людей'
 )
 
-app.include_router(services_router)
+app.include_router(services_router, prefix='/api')
