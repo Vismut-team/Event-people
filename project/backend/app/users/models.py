@@ -17,7 +17,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     password_hash = Column(String(length=256), nullable=False)
-    email = Column(String(len(50)), nullable=False)
+    email = Column(String(length=50), nullable=False)
     is_verified = Column(Boolean, default=False, nullable=False)
     is_active = Column(Boolean, default=False, nullable=False)
     is_admin = Column(Boolean, default=False, nullable=False)
