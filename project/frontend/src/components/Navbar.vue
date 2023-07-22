@@ -4,12 +4,19 @@
 import { reactive } from 'vue';
 import router from '../router'
 import { useApiStore } from '@/stores/ApiStore'
+
 const api = useApiStore()
 
 const notificationWindow = reactive({
     active: false,
-    data: {}
+    items: [
+        { id: 1, title: "Notification1", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit" },
+        { id: 2, title: "Notification2", text: "Lorem ipsum dolor sit ametelit" },
+        { id: 3, title: "Notification3", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, consectetur adipisicing elit" },
+        { id: 4, title: "Notification4", text: "Lorem ipsum dolor" },
+    ]
 })
+
 function notificationWindowOpenClose() {
     //#TODO: refactor this function:
     // get information from server
@@ -48,27 +55,22 @@ function notificationWindowOpenClose() {
         </div>
         <div class="nav-notification-window p-2 d-flex flex-column" v-if="notificationWindow.active"
             v-click-away="notificationWindowOpenClose">
-            <h1 class="text-center">Notification data</h1>
+            <h3 class="text-center">Уведомления</h3>
+            <hr>
             <div class="nav-notification-window__items">
-                <div>
-                    <hr>
-                    <h6 class="text-center">Notification1</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, autem.</p>
-                </div>
-                <div>
-                    <hr>
-                    <h6 class="text-center">Notification2</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, autem.</p>
-                </div>
-                <div>
-                    <hr>
-                    <h6 class="text-center">Notification3</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, autem.</p>
+                <div v-for="notification in notificationWindow.items" :key="notification.id">
+                    <h6 class="text-center">{{ notification.title }}</h6>
+                    <p>{{ notification.text }}</p>
                 </div>
             </div>
-            <button class="mt-auto btn">
-                <h6>Показать все</h6>
-            </button>
+            <div class="mt-auto text-center" v-if="notificationWindow.items.length > 0">
+                <button class="btn">
+                    <h6>Показать все</h6>
+                </button>
+            </div>
+            <div v-else>
+                <h6 class="text-center mt-5">Уведомлений нет</h6>
+            </div>
         </div>
     </div>
 </template>
@@ -80,23 +82,27 @@ function notificationWindowOpenClose() {
     padding-right: 10px;
     border: solid 1px #e9f3e1;
 }
+
 .nav-notification-window {
     position: fixed;
     right: 0;
-    margin-right: 10px;
     height: 300px;
-    width: 400px;
+    max-width: 400px;
+    min-width: 250px;
     background-color: rgba(236, 123, 10, 0.841);
     border-radius: 0% 0% 10% 10%;
+    border: solid 3px #66d908;
 }
-.nav-notification-window__items{
-    height: 65%;
+
+.nav-notification-window__items {
     width: 100%;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     border-radius: 5px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
 .nav-notification-window__items::-webkit-scrollbar-track {
     border-radius: 8px;
 }
