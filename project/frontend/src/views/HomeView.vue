@@ -10,7 +10,7 @@ import router from '../router'
 <template>
     <div class="home-main">
         <div class="text-center">
-            <h3>Самые популярные авторы</h3>
+            <h3 class="mb-5">Самые популярные авторы</h3>
             <div class="list-group">
                 <button class="btn list-group-item list-group-item-action"
                     @click="router.push({ name: 'portfolio', params: { id: 1 } })">First</button>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, computed, onMounted } from "vue"
+import { ref, watch, computed, onMounted, reactive } from "vue"
 // import router from '../router'
 import { useApiStore } from '@/stores/ApiStore'
 const api = useApiStore()
@@ -46,12 +46,19 @@ const services_from_backend = [
         ]
     },
 ]
+const portfolioData = reactive({
+    userPersonalData: {},
+    userServicesData: {}
+})
 const serviceWindow = ref({})
 function changeServiceWindow(service) {
     serviceWindow.value = service
 }
 
 onMounted(() => {
+
+
+
     if (services_from_backend.length > 0) {
         changeServiceWindow(services_from_backend[0])
     }
@@ -59,11 +66,10 @@ onMounted(() => {
 </script>
 <template>
     <div>
-        <h1 class="text-center">Страница пользователя {{ $route.params.id }}</h1>
+        <h1 class="text-center mb-3">Страница пользователя {{ $route.params.id }}</h1>
         <div class="row">
             <div class="col-7">
-                <p>Горько! в Перми—Организатор</p>
-                <h4>Оксана Еремина</h4>
+                <h4 class="text-center">Оксана Еремина</h4>
                 <div class="ps-1 pe-1 d-flex justify-content-around">
                     <button class="btn btn-light">Услуги</button>
                     <button class="btn btn-light">Портфолио</button>
@@ -93,24 +99,26 @@ onMounted(() => {
                 </div>
             </div>
             <div class="col-5">
-                <!-- <div>
-                    <div class="row">
-                        <div class="col-2">
-                            <button class="btn btn-outline-light ">
-                                <img src="/user_standart_avatar.png" class="portfolio-main__avatar-preview" alt="avatar"
-                                    @mouseover="style">
-                            </button>
-                        </div>
-                        <div class="col-10">
-                            <h5>User First Name</h5>
-                            <h5>User Last Name</h5>
-                            <h5>User Profession</h5>
-                        </div>
-                    </div>
-                </div> -->
+                <div class="text-center">
+                    <img src="/user_standart_avatar.png" class="portfolio-main__avatar" alt="avatar">
+                </div>
+                <div>
+                    <h5>Оксана Еремина</h5>
+                    <p>Туристическая деревня Заречное</p>
+                </div>
+                <div class="text-center d-grid gap-2">
+                    <button class="btn mt-1 mb-3 btn-success btn-sm">Контакты</button>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.portfolio-main__avatar {
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    border: 3px solid #05ac0b;
+}
+</style>

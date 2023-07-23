@@ -32,7 +32,9 @@ onMounted(() => {
 }
 
 main {
-  margin-top: 60px;
+  margin-top: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
   width: 100%;
 }
 </style>
