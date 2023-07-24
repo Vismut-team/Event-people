@@ -33,7 +33,7 @@ function notificationWindowOpenClose() {
                 <button type="button" class="btn btn-outline-dark" @click="router.push({ name: 'home' })">
                     <h3>Event people</h3>
                 </button>
-                <div>
+                <div class="d-flex">
                     <button v-if="api.userAuth" type="button" class="btn btn-outline-dark nav__button"
                         @click="router.push({ name: 'my-portfolio' })">Аккаунт</button>
                     <button v-if="api.userAuth" id="notificationDropdown" type="button" class="btn"
