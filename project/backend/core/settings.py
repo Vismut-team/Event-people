@@ -30,8 +30,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "api",
 ]
-#TODO: refactor daphne
-INSTALLED_APPS = ["daphne"] + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+INSTALLED_APPS = ["daphne"] + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS  # TODO: refactor daphne
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
