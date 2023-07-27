@@ -92,5 +92,34 @@ export const useApiStore = defineStore("apiStore", {
       this.userData = {};
       this.auth = false;
     },
+    getUserFullData() {
+      //TODO: refactor this function (data from server)
+      return {
+        // username: "Test User",
+        firstName: "Test",
+        lastName: "User",
+        phoneNumber: "88005553535",
+        email: "test-user@test.com",
+        city: { id: 3, title: "Test City3" },
+      };
+    },
+    getCityList() {
+      //TODO: refactor this function (data from server)
+      return [
+        { id: 1, title: "Test City1" },
+        { id: 2, title: "Test City2" },
+        { id: 3, title: "Test City3" },
+        { id: 4, title: "Test City4" },
+        { id: 5, title: "Test City5" },
+      ];
+    },
+    updateUserData() {
+      //TODO: refactor this function (send data to server axios)
+      console.log("send data to server");
+      setTimeout(() => {
+        console.log("userData successfully updated");
+      }, 2000);
+      //TODO: add notification
+    },
   },
 });
